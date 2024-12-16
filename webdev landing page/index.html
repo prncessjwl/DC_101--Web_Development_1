@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <!-- Stylesheet Link -->
+    <link rel="stylesheet" href="style.css">
+
+    <title>SEASONS OF BLOOM | Perfume Shop</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <main class="main-content">
+            <div id="hero" class="hero">
+                <h1>Jeweliana Sheniel</h1>
+                <p>When summer arrives, the season calls for a lighter, fresher and some may say even a zestier summer
+                    fragrance to match
+                    the mood of the time of the year. Try one of our new perfumes that are perfect for the sun-drenched
+                    months.</p>
+            </div>
+
+            <div class="navbar">
+                <div class="nav-item">
+                    <ul>
+                        <li><a href="#hero"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#featured"><i class="fa fa-fire"></i> Featured</a></li>
+                        <li><a href="#products"><i class="fa fa-spray-can"></i> Products</a></li>
+                        <li><a href="#testimonial"><i class="fa fa-quote-left"></i> Testimonial</a></li>
+                        <li><a href="#contact"><i class="fas fa-address-card"></i> Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            
+            
+            <!-- Fixed Cart Icon -->
+<div class="cart-container" id="cartIcon">
+    🛒
+</div>
+
+<!-- Cart Modal -->
+<div class="cart-modal" id="cartModal">
+    <div class="close-btn" id="closeCart">X</div>
+    <h2>Your Cart</h2>
+    <ul id="cartItems">
+        <!-- Cart Items will be dynamically listed here -->
+    </ul>
+    <p id="totalPrice">Total Price: ₱0.00</p>
+    <button onclick="checkout()">Proceed to Checkout</button>
+</div>
+
+
+
+
+
+    
+    
+            <div id="featured">
+    <h2>Featured Products</h2>
+    <p>Our products are being loved by our customers.</p>
+    <div class="featured-product">
+        <div class="featured-one">
+            <img src="assets/images/blue.jpeg" alt="" class="featured-image">
+            <div class="featured-description">
+                <p>
+                    <b>Product Name:</b> Unapologetic Beauty.<br>
+                    <b>Offer Price:</b> <del></del> ₱170.00<br>
+                    <b>Color:</b> Pink
+                </p>
+            </div>
+            <button class="view-details" onclick="openModal('Unapologetic Beauty', '₱170.00', 'Pink', 'assets/images/blue.jpeg')">View Details</button>
+        </div>
+        <div class="featured-two">
+            <img src="assets/images/gold.jpeg" alt="" class="featured-image">
+            <div class="featured-description">
+                <p>
+                    <b>Product Name:</b> Luminous Blooming.<br>
+                    <b>Offer Price:</b> <del></del> ₱170.00<br>
+                    <b>Color:</b> Peach
+                </p>
+            </div>
+            <button class="view-details" onclick="openModal('Luminous Blooming', '₱170.00', 'Peach', 'assets/images/gold.jpeg')">View Details</button>
+        </div>
+        <div class="featured-three">
+            <img src="assets/images/black.jpeg" alt="" class="featured-image">
+            <div class="featured-description">
+                <p>
+                    <b>Product Name:</b> Doris Floralty.<br>
+                    <b>Offer Price:</b> <del></del> ₱170.00<br>
+                    <b>Color:</b> Purple
+                </p>
+            </div>
+            <button class="view-details" onclick="openModal('Doris Floralty', '₱170.00', 'Purple', 'assets/images/black.jpeg')">View Details</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title"></h2>
+        <img id="modal-image" src="" alt="Product Image">
+        <p><b>Price:</b> <span id="modal-price"></span></p>
+        <p><b>Color:</b> <span id="modal-color"></span></p>
+        <div class="modal-buttons">
+            <button class="buynow" onclick="addToCart()">Add to Cart</button>
+            <button class="buynow" id="buyNowButton" onclick="redirectToCheckout()">Buy Now</button>
+        </div>
+    </div>
+</div>
+
+
+            <div class="icon-box-section">
+                <div class="icon1 icon">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>All Over The World</h3>
+
+                    <p></p>
+                </div>
+                <div class="icon2 icon"><i class="fas fa-dollar-sign"></i>
+                    <h3>Money Back Guarantee</h3>
+
+                    <p></p>
+                </div>
+                <div class="icon3 icon"><i class="fas fa-shipping-fast"></i>
+                    <h3>Fast & Free Shipping</h3>
+                    <p></p>
+                </div>
+            </div>
+            <!-- Products Section -->
+            <div id="products">
+                <h2>Our Best Product</h2>
+                <p>We provide best products for our customers.</p>
+
+                <div class="products-grid">
+                    <img src="assets/images/product1.jpeg">
+                    <img src="assets/images/product2.jpeg">
+                    <img src="assets/images/product3.jpeg">
+                    <div class="second-grid">
+                        <img src="assets/images/product4.jpeg">
+                        <img src="assets/images/product5.jpeg">
+                        <img src="assets/images/product6.jpeg">
+                    </div>
+                </div>
+            </div>
+            <!-- Testimonial Section -->
+            <div id="testimonial">
+                <h2>What Our Clients Say</h2>
+                <p>We provide best products for our customers.</p>
+                <div class="customers customer1">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <img src="assets/images/customer1.jpg">
+                    <h3>Best Fragnance!</h3>
+
+                    <p>Mabango siya so far amoy fresh lang di masakit sa ilong kasi sakto lang yung 
+                        pagkamatamis niya. Nagustuhan din ni mama yung amoy haha sabi niya di ko pa raw 
+                        napapaamoy sa kanya, naamoy niya na raw. Medj familiar saken ang scent. 
+                        Bilis lang din dumating and sobrang safe ng pagkakabalot</p>
+                    <i class="fas fa-quote-right quote-icon"></i>
+
+                </div>
+                <div class="customers customer2 ">
+                    <i class="fas fa-quote-left quote-icon "></i>
+                    <img src="assets/images/customer2.png">
+                    <h3>Thank You!</h3>
+
+                    <p>This is what i'm looking for na Hindi matapang, hindi masakit sa ilong,
+                        i love the scents at nakaka adik ang amoy</p>
+                    <i class="fas fa-quote-right quote-icon "></i>
+                </div>
+                <div class="customers customer3">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <img src="assets/images/customer3.png">
+                    <h3>I'm Impressed!</h3>
+
+                    <p>As a girl na very sensitive sa amoy ng mga pabango, I really love this one.
+                         Same with my mom nagustuhan niya normally mahirap makahanap ng perfumes na hindi
+                          matapang ang amoy at yung balance lang na amoy. Exceed my expectations.
+                           Hopefully maubos ko agad para makabili ibang variant.</p>
+                    <i class="fas fa-quote-right quote-icon"></i>
+                </div>
+            </div>
+            <!-- Contact Section -->
+            <div id="contact">
+
+
+                <h2>Contact Us</h2>
+                <p>Feel free to send us a message about anything. We always appreciate you.</p>
+
+                <form>
+                    <label for="name">Name</label> <br>
+                    <input type="text" name="" id="name" placeholder="Enter your name" required>
+                    <br>
+                    <label for="email">Email</label> <br>
+                    <input type="email" name="" id="email" placeholder="Enter your email" required>
+                    <br>
+                    <label for="message">Message</label><br>
+                    <textarea name="" id="message" placeholder="Enter your message" required></textarea>
+                    <br>
+                    <button type="submit">Send</button>
+                </form>
+
+            </div>
+        </main>
+        <footer class="site-footer"></footer>
+    </div>
+</body>
+<script src="main.js"></script>
+
+</html>

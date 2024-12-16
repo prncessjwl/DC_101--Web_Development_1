@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .total-section {
+            margin: 20px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .total-section p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #DA8359;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: #DA8359;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .thankyou-message {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+        .cart-details {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="paymentTitle">Payment Information</h2>
+
+        <!-- Cart details display -->
+        <div class="cart-details" id="cartDetails">
+            <!-- Cart items will be dynamically populated here -->
+        </div>
+
+        <form id="checkoutForm">
+            <!-- Full Name -->
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <!-- Email Address -->
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <!-- Contact Number -->
+            <label for="contact">Contact Number</label>
+            <input type="text" id="contact" placeholder="Enter your contact number" required>
+
+            <!-- Address -->
+            <label for="address">Shipping Address</label>
+            <textarea id="address" rows="3" placeholder="Enter your address" required></textarea>
+
+            <!-- Payment Method -->
+            <label for="payment">Payment Method</label>
+            <select id="payment" required>
+                <option value="">Select Payment Method</option>
+                <option value="credit-card">Credit Card</option>
+                <option value="gcash">GCash</option>
+                <option value="cod">Cash on Delivery</option>
+            </select>
+
+            <!-- Submit Button -->
+            <button type="button" class="btn" id="submitBtn">Submit</button>
+        </form>
+
+        <!-- Confirmation Section -->
+        <div id="confirmationSection" class="hidden">
+            <p class="thankyou-message">Thank you for your purchase!</p>
+            <button class="btn" onclick="goToHomePage()">Go to Home Page</button>
+        </div>
+    </div>
+
+    <script>
+        // Example cart (in real cases, you'd get it from localStorage or a server)
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Shipping fee
+        const shippingFee = 50;
+
+        // Function to calculate the total price
+        function calculateTotal() {
+            let total = 0;
+
+            // Calculate total from cart items (including quantities)
+            cart.forEach(item => {
+                total += parseFloat(item.price.replace('₱', '').replace(',', '')) * item.quantity;
+            });
+
+            // Add shipping fee
+            total += shippingFee;
+
+            return total;
+        }
+
+        // Function to display the cart details and total price
+        function displayCartDetails() {
+            const cartDetails = document.getElementById("cartDetails");
+            cartDetails.innerHTML = "";  // Clear previous cart details
+
+            // Calculate the total price
+            const total = calculateTotal();
+            const productPrice = total - shippingFee;
+
+            // Display the cart items
+            cart.forEach(item => {
+                const cartItem = document.createElement("p");
+                cartItem.textContent = `${item.title} (${item.quantity}) - ₱${(parseFloat(item.price.replace('₱', '').replace(',', '')) * item.quantity).toFixed(2)}`;
+                cartDetails.appendChild(cartItem);
+            });
+
+            // Display shipping fee
+            const shippingDetails = document.createElement("p");
+            shippingDetails.textContent = `Shipping Fee: ₱${shippingFee}`;
+            cartDetails.appendChild(shippingDetails);
+
+            // Add total price to the cart details
+            const totalDetails = document.createElement("p");
+            totalDetails.textContent = `Total: ₱${total.toFixed(2)}`;
+            cartDetails.appendChild(totalDetails);
+        }
+
+        // On page load, display the cart details and total price
+        window.onload = function () {
+            displayCartDetails();
+        };
+
+        // Submit Button Logic
+        document.getElementById("submitBtn").addEventListener("click", function () {
+            // Validate form inputs
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const contact = document.getElementById("contact").value;
+            const address = document.getElementById("address").value;
+            const payment = document.getElementById("payment").value;
+
+            if (name && email && contact && address && payment) {
+                // Change title to "Payment Done"
+                document.getElementById("paymentTitle").textContent = "Payment Done";
+
+                // Hide checkout form and show confirmation
+                document.getElementById("checkoutForm").classList.add("hidden");
+                document.getElementById("confirmationSection").classList.remove("hidden");
+            } else {
+                alert("Please fill out all required fields.");
+            }
+        });
+
+        // Redirect to Home Page
+        function goToHomePage() {
+            window.location.href = "index.html"; // Redirect to your home page
+        }
+    </script>
+</body>
+</html>
